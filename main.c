@@ -10,12 +10,19 @@ int generate(int limit) {
 int main() {
   char answer[20];
   char correct[20];
+  
+  // obtain random number for exercise
   srand(time(NULL));
   int num = generate(1000);
+
+  // fill array for correct answer and ask question
   sprintf(correct, "%X", num);
   printf("Convert %d to hex: ", num);
   scanf("%19s", answer);
-  printf("Answer given: %s\n", answer);
-  printf("The right answer is: %s\n", correct);
+
+  // check answer
+  if(!strcmp(answer,correct)) printf("Correct!\n");
+  else printf("Incorrect, the answer was %s\n", correct);
+
   return 0;
 }
