@@ -29,9 +29,21 @@ void askfor_hex() {
 void askfor_dec() {
   int guess;
   int num = generate(1000);
+  
   // use integer directly
   printf("Convert %X to decimal: ", num);
-  scanf("%d", &guess);
+  int result = scanf("%d", &guess);
+  
+  // error checking  
+  if (result != 1) {
+    printf("Please enter a number.\n");
+    int c;
+    // throw away leftover input
+    while ((c = getchar()) != '\n' && c != EOF) {
+    }
+    return;
+  }
+
   if (guess == num) printf("Correct!\n");
   else printf("Incorrect, the answer was %d\n", num);
 }
