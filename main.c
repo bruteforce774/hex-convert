@@ -23,11 +23,22 @@ void askfor_hex() {
 
   // check answer
   if(!strcmp(answer, correct)) printf("Correct!\n");
-  else printf("Incorect, the answer was %s\n", correct);
+  else printf("Incorect, the answer was %d\n", num);
+}
+
+void askfor_dec() {
+  int guess;
+  int num = generate(1000);
+  // use integer directly
+  printf("Convert %X to decimal: ", num);
+  scanf("%d", &guess);
+  if (guess == num) printf("Correct!\n");
+  else printf("Incorrect, the answer was %d\n", num);
 }
 
 int main() {
   srand(time(NULL));
   askfor_hex();
+  askfor_dec();
   return 0;
 }
