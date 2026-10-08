@@ -23,7 +23,7 @@ void askfor_hex() {
 
   // check answer
   if(!strcmp(answer, correct)) printf("Correct!\n");
-  else printf("Incorect, the answer was %d\n", num);
+  else printf("Incorrect, the answer was %s\n", correct);
 }
 
 void askfor_dec() {
