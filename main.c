@@ -37,9 +37,15 @@ void askfor_dec() {
 }
 
 int main() {
+  char reply = 'y';
   srand(time(NULL));
-  // function call based on random value
-  if (generate(2) == 0) askfor_hex();
-  else askfor_dec(); 
+  // function call based on random value with loop
+  while (reply == 'y') {
+    if (generate(2) == 0) askfor_hex();
+    else askfor_dec();
+    printf("Another? (y/n): ");
+    // add leading space so scanf skips newline 
+    scanf(" %c", &reply);
+  } 
   return 0;
 }
