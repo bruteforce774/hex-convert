@@ -38,7 +38,8 @@ void askfor_dec() {
 
 int main() {
   srand(time(NULL));
-  askfor_hex();
-  askfor_dec();
+  // function call based on random value
+  if (generate(2) == 0) askfor_hex();
+  else askfor_dec(); 
   return 0;
 }
