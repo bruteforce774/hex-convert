@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 // random number generation
 int generate(int limit) {
@@ -20,6 +21,11 @@ void askfor_hex() {
   sprintf(correct, "%X", num);
   printf("Convert %d to hex: ", num);
   scanf("%19s", answer);
+
+  // for case insensitive handling
+  for(int i=0; answer[i] != '\0'; i++) {
+    answer[i] = toupper(answer[i]);
+  }
 
   // check answer
   if(!strcmp(answer, correct)) printf("Correct!\n");
