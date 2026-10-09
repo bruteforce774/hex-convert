@@ -27,8 +27,13 @@ void askfor_hex() {
     answer[i] = toupper(answer[i]);
   }
 
+  // account for possible 0x prefix
+  char *start = answer;
+  if(answer[0] == '0' && answer[1] == 'X')
+    start = answer + 2;	
+
   // check answer
-  if(!strcmp(answer, correct)) printf("Correct!\n");
+  if(!strcmp(start, correct)) printf("Correct!\n");
   else printf("Incorrect, the answer was %s\n", correct);
 }
 
