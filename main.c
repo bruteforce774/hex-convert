@@ -10,7 +10,7 @@ int generate(int limit) {
 }
 
 // function to ask for dec to hex conversion
-void askfor_hex() {
+int askfor_hex() {
   char answer[20];
   char correct[20];
 
@@ -33,16 +33,20 @@ void askfor_hex() {
     start = answer + 2;	
 
   // check answer
-  if(!strcmp(start, correct)) printf("Correct!\n");
-  else printf("Incorrect, the answer was %s\n", correct);
+  if(!strcmp(start, correct)) {
+    printf("Correct!\n");
+    return 1;
+  }
+  printf("Incorrect, the answer was %s\n", correct);
+  return 0;
 }
 
-void askfor_dec() {
+int askfor_dec() {
   int guess;
   int num = generate(1000);
   
   // use integer directly
-  printf("Convert %X to decimal: ", num);
+  printf("Convert 0x%X to decimal: ", num);
   int result = scanf("%d", &guess);
   
   // error checking  
@@ -52,23 +56,33 @@ void askfor_dec() {
     // throw away leftover input
     while ((c = getchar()) != '\n' && c != EOF) {
     }
-    return;
+    return 0;
   }
-
-  if (guess == num) printf("Correct!\n");
-  else printf("Incorrect, the answer was %d\n", num);
+  
+  if (guess == num) {
+    printf("Correct!\n");
+    return 1;
+  }
+  printf("Incorrect, the answer was %d\n", num);
+  return 0;
 }
 
 int main() {
   char reply = 'y';
+  int asked = 0;
+  int right = 0;
   srand(time(NULL));
+  
   // function call based on random value with loop
   while (reply == 'y') {
-    if (generate(2) == 0) askfor_hex();
-    else askfor_dec();
+    // implement scoring logic
+    if (generate(2) == 0) right += askfor_hex();
+    else right += askfor_dec();
+    asked++;
     printf("Another? (y/n): ");
     // add leading space so scanf skips newline 
     scanf(" %c", &reply);
-  } 
+  }
+  printf("Score: %d/%d.\n", right, asked); 
   return 0;
 }
