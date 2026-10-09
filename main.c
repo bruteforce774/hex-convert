@@ -20,7 +20,7 @@ int askfor_hex() {
   // obtain and store solution and user response
   sprintf(correct, "%X", num);
   printf("Convert %d to hex: ", num);
-  scanf("%19s", answer);
+  if (scanf("%19s", answer) != 1) exit(0);
 
   // for case insensitive handling
   for(int i=0; answer[i] != '\0'; i++) {
@@ -48,7 +48,8 @@ int askfor_dec() {
   // use integer directly
   printf("Convert 0x%X to decimal: ", num);
   int result = scanf("%d", &guess);
-  
+  if (result == EOF) exit(0); 
+
   // error checking  
   if (result != 1) {
     printf("Please enter a number.\n");
@@ -81,7 +82,7 @@ int main() {
     asked++;
     printf("Another? (y/n): ");
     // add leading space so scanf skips newline 
-    scanf(" %c", &reply);
+    if(scanf(" %c", &reply) != 1) exit(0);
   }
   printf("Score: %d/%d.\n", right, asked); 
   return 0;
